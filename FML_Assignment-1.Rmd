@@ -1,0 +1,87 @@
+---
+title: "FML_Assignment-1"
+author: "Sharanya Domakonda"
+date: "2024-02-04"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+**1. Download a dataset from the web.**
+
+File location - https://www.kaggle.com/datasets/moslemcapo/male-vs-female
+
+***
+
+**2. Import the dataset into R.**
+
+```{r}
+#Importing the dataset to R
+test <- read.csv("C://Users//91988//Desktop//FML//dataset csv.csv")
+```
+
+***
+
+```{r}
+#Summary of the dataset
+summary(test)
+```
+
+***
+
+**3. Print out descriptive statistics for a selection of quantitative and categorical variables**
+
+```{r}
+# Descriptive statistics for a quantitative variable
+summary(test$age)
+```
+
+```{r}
+# Descriptive statistics for a categorical variable
+table(test$region)
+```
+
+***
+
+**4. Transform at least one variable. It doesn't matter what the transformation is.**
+
+```{r}
+#Transforming a variable
+test$smoker <- ifelse(test$smoker == "yes", "1", test$smoker)
+test$smoker <- ifelse(test$smoker == "no", "2", test$smoker)
+```
+
+***
+
+```{r}
+#summary of the dataset after transformation
+summary(test)
+head(test)
+```
+
+***
+
+**5. Plot at least one quantitative variable, and one scatterplot.**
+
+```{r}
+#Plotting histogram for one quantitative variable(BMI)
+library(ggplot2)
+ggplot(test, aes(x = age)) + geom_histogram(binwidth = 2, 
+      fill = "grey", color = "black") + 
+   labs(title = "Histogram of BMI", x = "Bmi")
+```
+
+***
+
+```{r}
+#Plotting a scatterplot for two quantitative variables(Age and Gender)
+ggplot(test, aes(x = age, y = Gender)) + geom_point(color = "Purple") +
+labs(title = "Scatter Plot of Age vs. Gender", x = "Age", y = "Gender")
+
+```
+
+***
